@@ -18,11 +18,11 @@ type Client struct {
 }
 
 func NewClient(projectRef string, apiKey string) *Client {
-	dbURL, err := url.Parse(fmt.Sprintf("%s.superbase.co%s", projectRef, "/rest/v1"))
+	dbURL, err := url.Parse(fmt.Sprintf("https://%s.supabase.co%s", projectRef, "/rest/v1"))
 	if err != nil {
 		panic(err)
 	}
-	storageURL, err := url.Parse(fmt.Sprintf("%s.superbase.co%s", projectRef, "/storage/v1"))
+	storageURL, err := url.Parse(fmt.Sprintf("https://%s.supabase.co%s", projectRef, "/storage/v1"))
 	if err != nil {
 		panic(err)
 	}

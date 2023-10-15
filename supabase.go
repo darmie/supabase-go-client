@@ -17,7 +17,7 @@ type Client struct {
 	DB      *postgrest.Client
 }
 
-func NewClient(projectRef string, apiKey string) (*Client, *error) {
+func NewClient(projectRef string, apiKey string) *Client {
 	dbURL, err := url.Parse(fmt.Sprintf("%s.superbase.co%s", projectRef, "/rest/v1"))
 	if err != nil {
 		panic(err)
@@ -31,5 +31,5 @@ func NewClient(projectRef string, apiKey string) (*Client, *error) {
 		DB:      postgrest.NewClient(dbURL.String(), "", map[string]string{"apiKey": apiKey, "Authorization": fmt.Sprintf("Bearer %s", apiKey)}),
 		Storage: storage_go.NewClient(storageURL.String(), apiKey, nil),
 		Auth:    endpoints.New(projectRef, apiKey),
-	}, nil
+	}
 }
